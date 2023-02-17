@@ -1,3 +1,4 @@
+from django.core.validators import FileExtensionValidator
 from django.db import models
 
 
@@ -41,3 +42,16 @@ class Articles(models.Model):
     class Meta:
         verbose_name = "Статья"
         verbose_name_plural = "Статьи"
+
+
+class MultiMedia(models.Model):
+    title = models.CharField(max_length=100)
+    media = models.FileField(upload_to='videos_uploaded', validators=[
+        FileExtensionValidator(allowed_extensions=['MOV', 'avi', 'mp4', 'webm', 'mkv'])])
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Мультимедиа"
+        verbose_name_plural = "Мультимедии"

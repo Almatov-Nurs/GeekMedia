@@ -1,10 +1,10 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 
-from .models import Posts
 from .service import PostsFilter
-from .paginations import PostsResultsSetPagination
-from .serializer import PostSerializer, PostsSerializer
+from .models import Posts, MultiMedia
+from .paginations import PostsResultsSetPagination, MediaResultsSetPagination
+from .serializer import PostSerializer, PostsSerializer, MultiMediaSerializer
 
 
 class PostsListAPIView(ListAPIView):
@@ -19,3 +19,10 @@ class PostsDetailAPIView(RetrieveAPIView):
     queryset = Posts.objects.all()
     serializer_class = PostSerializer
     lookup_field = "id"
+
+
+class MultiMediaAPIView(ListAPIView):
+    queryset = MultiMedia.objects.all()
+    serializer_class = MultiMediaSerializer
+    pagination_class = MediaResultsSetPagination
+    filter_backends = ()

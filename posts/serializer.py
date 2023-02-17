@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Posts, Articles
+from .models import Posts, Articles, MultiMedia
 
 
 class ArticlesSerializer(serializers.ModelSerializer):
@@ -34,3 +34,9 @@ class PostsSerializer(serializers.ModelSerializer):
 class PostCreateSerializers(serializers.Serializer):
     title = serializers.CharField(min_length=0, max_length=100)
     description = serializers.CharField()
+
+
+class MultiMediaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MultiMedia
+        fields = '__all__'
