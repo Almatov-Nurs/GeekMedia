@@ -2,9 +2,9 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 
 from .service import PostsFilter
-from .models import Posts, MultiMedia
+from .models import Posts, MultiMedia, Category
 from .paginations import PostsResultsSetPagination, MediaResultsSetPagination
-from .serializer import PostSerializer, PostsSerializer, MultiMediaSerializer
+from .serializer import PostSerializer, PostsSerializer, MultiMediaSerializer, CategorySerializer
 
 
 class PostsListAPIView(ListAPIView):
@@ -25,4 +25,10 @@ class MultiMediaAPIView(ListAPIView):
     queryset = MultiMedia.objects.all()
     serializer_class = MultiMediaSerializer
     pagination_class = MediaResultsSetPagination
+    filter_backends = ()
+
+
+class CategoryAPIView(ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
     filter_backends = ()

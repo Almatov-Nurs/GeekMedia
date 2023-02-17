@@ -22,7 +22,7 @@ from decouple import config
 from .swagger import urlpatterns as docs
 
 urlpatterns = [
-                  path('admin/', admin.site.urls),
+                  path('geekmedia/admin/', admin.site.urls),
                   path('api/v1/', include('posts.urls')),
                   path('api/auth/', include('users.urls')),
                   path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),

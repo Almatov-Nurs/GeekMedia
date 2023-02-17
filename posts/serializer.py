@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Posts, Articles, MultiMedia
+from .models import Posts, Articles, MultiMedia, Category
 
 
 class ArticlesSerializer(serializers.ModelSerializer):
@@ -39,4 +39,10 @@ class PostCreateSerializers(serializers.Serializer):
 class MultiMediaSerializer(serializers.ModelSerializer):
     class Meta:
         model = MultiMedia
+        fields = '__all__'
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
         fields = '__all__'
