@@ -1,0 +1,27 @@
+version: '3'
+services:
+  database_service:
+    image: 'postgres:12.1'
+    hostname: geekhost
+    environment:
+      - POSTGRES_DB=geekmedia
+      - POSTGRES_USER=geekadmin
+      - POSTGRES_PASSWORD=geekmedia2023
+    ports:
+      - '5434:5432'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  geekmedia-service:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - '8080:5000'
+    depends_on:
+      - database_service
+    command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic
+      --no-input && gunicorn -b 0.0.0.0:5000 GeekMedia.wsgi --reload"
+
+volumes:
+  postgres-data:
