@@ -22,9 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!7@nw!gp4)#o3ww$e1%3wqjhvt_#rucae^zznb@z4sipa6s&&q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'GeekMedia.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'geekmedia',
+        'USER': 'geekadmin',
+        'PASSWORD': 'geekmedia2023',
+        'HOST': 'localhost',
+        'PORT': 5433
     }
 }
 
